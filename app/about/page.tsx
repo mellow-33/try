@@ -1,8 +1,7 @@
-import { Footer } from "@/components/footer";
+import Footer from "@/components/footer";
 import { Navbar1 } from "@/components/navbar";
 import BreadcrumbHero from "./breadcrupm";
 import { Hero1 } from "./hero";
-import Principles from "./principle";
 import { Team } from "./team";
 
 export default function AboutUs(){
@@ -11,7 +10,6 @@ export default function AboutUs(){
         <Navbar1 />
         <BreadcrumbHero />
         <Hero1 />
-        <Principles />
         <Team />
         <Footer />
         </>

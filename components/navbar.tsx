@@ -186,7 +186,7 @@ const Navbar1: React.FC<Navbar1Props> = ({
   className,
 }) => {
   return (
-    <header className={cn("py-6 px-4 border-b bg-[#FFFDF7] sticky top-0 lg:top-4 z-50 rounded-4xl lg:rounded-3xl", className)}>
+    <header className={cn("py-4 px-4 border-b bg-white sticky top-4 lg:top-4 z-50 rounded-3xl lg:rounded-3xl mx-4 lg:mx-6", className)}>
       <div className="container px-4 mx-auto">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
@@ -216,7 +216,7 @@ const Navbar1: React.FC<Navbar1Props> = ({
           {/* Contatti a destra */}
           <div className="flex items-center gap-4">
             <a 
-              href="tel:+393XXXXXXXXX" 
+              href="tel:07731361942" 
               className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
               title="Chiama"
             >
@@ -280,7 +280,7 @@ const Navbar1: React.FC<Navbar1Props> = ({
                       href="tel:+393XXXXXXXXX" 
                       className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
                     >
-                      <PhoneCallIcon className="size-5 px-4"/>
+                      <PhoneCallIcon className="size-5" />
                     </a>
                     <a 
                       href="https://instagram.com/tuoprofilo" 

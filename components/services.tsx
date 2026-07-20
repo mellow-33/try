@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
-export function ServicesShowcase() {
+export default function ServicesShowcase() {
 const features = [
     {
       number: "001",
@@ -92,7 +92,10 @@ const features = [
                   {/* Content */}
                   <div className="flex-1">
                     <h3 className="text-base lg:text-lg font-bold mb-1">
-                      {feature.title}
+                      <Link
+                        href="/services">
+                        {feature.title}
+                      </Link>
                     </h3>
                     <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
                       {feature.description}
@@ -105,7 +108,7 @@ const features = [
             {/* CTA Button */}
             <div className="mt-4">
               <Separator className="mb-8" />
-              <Button className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-lg rounded-full hover:bg-gray-900 transition-colors duration-200 group hover:cursor-pointer">
+              <Button className="bg-black text-white font-lg rounded-full hover:bg-gray-900 transition-colors duration-200 group hover:cursor-pointer px-4 sm:px-5 py-2 sm:py-3 h-auto shadow-md font-medium">
                 <Link href="/services">
                   <span>Scopri i servizi</span>
                 </Link>
