@@ -22,7 +22,7 @@ export default function LocationSection() {
   ];
 
   return (
-    <section className="w-full min-h-125 lg:min-h-150 grid grid-cols-1 lg:grid-cols-2 overflow-hidden pt-12">
+    <section className="w-full min-h-125 lg:min-h-150 grid grid-cols-1 lg:grid-cols-2 overflow-hidden pt-24">
       
     {/* Colonna Sinistra - Mappa */}
       <div className="bg-white flex items-center justify-center p-0 h-full min-h-150 sm:min-h-175 lg:min-h-auto">

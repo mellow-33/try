@@ -1,10 +1,9 @@
 "use client";
 
-import { Truck, Menu, Recycle, Package, Handshake, Building, Phone } from "lucide-react";
+import { Truck, Menu, Recycle, Package, Handshake, Building, Briefcase, Scale } from "lucide-react";
 import React from "react";
 import { InstagramIcon } from "@/components/ui/instagram";
 import { PhoneCallIcon } from "@/components/ui/phone-call";
-
 import {
   Accordion,
   AccordionContent,
@@ -28,7 +27,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-
+import Image from "next/image";
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface MenuItem {
@@ -57,7 +56,7 @@ interface Navbar1Props {
 
 const defaultLogo: LogoProps = {
   url: "/",
-  src: "/images/ThinkGreeLogo.png",
+  src: "/logo.ico",
   alt: "logo",
   title: "Think Green",
 };
@@ -91,12 +90,12 @@ const defaultMenu: MenuItem[] = [
       },
       {
         title: "Consulenze",
-        icon: <Handshake className="size-5 shrink-0" />,
+        icon: <Briefcase className="size-5 shrink-0" />,
         url: "/services",
       },
       {
         title: "Conferimenti",
-        icon: <Handshake className="size-5 shrink-0" />,
+        icon: <Scale className="size-5 shrink-0" />,
         url: "/services",
       },
       {
@@ -193,9 +192,11 @@ const Navbar1: React.FC<Navbar1Props> = ({
           {/* Logo a sinistra */}
           <div className="flex items-center">
             <a href={logo.url} className="flex items-center gap-2">
-              <img
+              <Image
                 src={logo.src}
-                className={cn("max-h-8 dark:invert", logo.className)}
+                width={30}
+                height={50}
+                className={cn("max-h-8 bg-white", logo.className)}
                 alt={logo.alt}
               />
               <span className="text-2xl font-semibold tracking-tighter text-foreground">
