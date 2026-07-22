@@ -42,7 +42,7 @@ export default function LocationSection() {
       </div>
 
   {/* Informazioni Location */}
-  <div className="bg-white flex items-center justify-center p-8 lg:p-16 h-full">
+  <div className="bg-white flex items-center justify-center p-8 lg:p-16 h-full pt-24 lg:pt-32">
     <div className="w-full max-w-xl pt-6">
       {/* Label */}
       <p className="text-gray-500 text-sm font-medium mb-4">Dove trovarci</p>

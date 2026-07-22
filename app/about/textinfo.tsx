@@ -1,7 +1,8 @@
 'use client'
 
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function TextInfoSection() {  
 const features = [
@@ -90,15 +91,12 @@ const features = [
               Ecco perché offriamo soluzioni flessibili e competitive per privati e imprese.
             </p>
 
-            <Link 
-              href="/contact" 
-              className="inline-flex items-center gap-3 bg-green-600 hover:bg-black text-white font-medium px-7 py-4 rounded-xl transition-all duration-300 shadow-sm hover:shadow"
-            >
-              <span>RICHIEDI UN PREVENTIVO</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </Link>
+            <Button className="bg-black text-white font-lg rounded-full hover:bg-gray-900 transition-colors duration-200 group hover:cursor-pointer px-4 sm:px-5 py-2 sm:py-3 h-auto shadow-md font-medium">
+                <Link href="/services">
+                  <span>Richiedi un preventivo</span>
+                </Link>
+                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </div>
 
           {/* Colonna di Destra: Come Lavoriamo (Fasi del Processo) */}
