@@ -9,37 +9,37 @@ import Link from "next/link";
 export default function ServicesShowcase() {
 const features = [
     {
-      number: "001",
+      number: "01",
       title: "Trasporto",
       description: "Servizi di logistica e movimentazione rifiuti",
     },
     {
-      number: "002",
+      number: "02",
       title: "Stoccaggio",
       description: "Soluzioni di deposito temporaneo e gestione inventario",
     },
     {
-      number: "003",
+      number: "03",
       title: "Recupero e Smaltimento",
       description: "Trattamento e recupero risorse da rifiuti",
     },
     {
-      number: "004",
+      number: "04",
       title: "Impianto",
       description: "Tecnologie innovative per il processamento",
     },
     {
-      number: "005",
+      number: "05",
       title: "Consulenze",
       description: "Supporto professionale per la gestione sostenibile",
     },
     {
-      number: "006",
+      number: "06",
       title: "Conferimenti",
       description: "Raccolta e conferimento autorizzato di materiali",
     },
     {
-      number: "007",
+      number: "07",
       title: "Intermediazioni",
       description: "Negoziazione e collegamento con operatori qualificati",
     },

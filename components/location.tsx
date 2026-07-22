@@ -13,12 +13,13 @@ export default function LocationSection() {
       value: "Strada secondaria A5 Pontinia(LT) 04014",
       href:"https://maps.app.goo.gl/bpP5foogdVTXZRNj6"
     },
-    {
+    /*{
       icon: Phone,
       label: "Telefono",
       value: "+39 02 1234 5678",
       href: "tel:+390212345678",
     },
+    */
   ];
 
   return (
@@ -99,7 +100,7 @@ export default function LocationSection() {
       })}
 
     {/* Link per visualizzare tutti i contatti */}
-    <div className="pt-4 border-t border-gray-200 fade-in-up duration-1000 delay-500">
+    <div className="pt-4">
       <Link href="/contact">
         <Button className="bg-black text-white font-xl rounded-full hover:bg-gray-900 transition-colors duration-200 group hover:cursor-pointer px-4 sm:px-5 py-2 sm:py-3 h-auto shadow-md ">
           Visualizza tutti i contatti

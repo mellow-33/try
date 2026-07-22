@@ -1,13 +1,15 @@
 
 import Footer from "@/components/footer";
 import { Navbar1 } from "@/components/navbar";
-import MissionSection from "./mission";
+import AboutUsIntro from "./aboutus";
+import TextInfoSection from "./textinfo";
 
 export default function AboutUs(){
     return (
         <>
         <Navbar1 />
-        <MissionSection />
+        <AboutUsIntro />
+        <TextInfoSection />
         <Footer />
         </>
     );

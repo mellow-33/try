@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Lato } from "next/font/google";
 import "./style/globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const fontLato = Lato({
   weight: ['400'],
@@ -35,6 +36,7 @@ export default function RootLayout({
       data-set-theme=""
       suppressHydrationWarning
     >
+      <SpeedInsights />
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
