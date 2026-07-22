@@ -4,6 +4,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {ArrowRight} from "lucide-react";
+import { motion } from "motion/react";
 
 export default function LocationSection() {
   const locationInfo = [
@@ -25,8 +26,14 @@ export default function LocationSection() {
   return (
     <section className="w-full min-h-125 lg:min-h-150 grid grid-cols-1 lg:grid-cols-2 overflow-hidden pt-24">
       
-    {/* Colonna Sinistra - Mappa */}
-      <div className="bg-white flex items-center justify-center p-0 h-full min-h-150 sm:min-h-175 lg:min-h-auto">
+      {/* Colonna Sinistra - Mappa con animazione di entrata da sinistra */}
+      <motion.div 
+        initial={{ opacity: 0, x: -40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="bg-white flex items-center justify-center p-0 h-full min-h-150 sm:min-h-175 lg:min-h-auto"
+      >
         <div className="w-full h-full bg-linear-to-br from-gray-300 to-gray-200 flex items-center justify-center relative">
           {/* Iframe Mappa */}
           <iframe
@@ -39,78 +46,91 @@ export default function LocationSection() {
             className="w-full h-full"
           />
         </div>
-      </div>
+      </motion.div>
 
-  {/* Informazioni Location */}
-  <div className="bg-white flex items-center justify-center p-8 lg:p-16 h-full pt-24 lg:pt-32">
-    <div className="w-full max-w-xl pt-6">
-      {/* Label */}
-      <p className="text-gray-500 text-sm font-medium mb-4">Dove trovarci</p>
+      {/* Informazioni Location con animazione di entrata da destra */}
+      <motion.div 
+        initial={{ opacity: 0, x: 40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        className="bg-white flex items-center justify-center p-8 lg:p-16 h-full pt-24 lg:pt-32"
+      >
+        <div className="w-full max-w-xl pt-6">
+          
+          {/* Label */}
+          <p className="text-gray-500 text-sm font-medium mb-4">Dove trovarci</p>
 
-      {/* Titolo Grande */}
-      <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
-        Visita la nostra sede
-      </h2>
+          {/* Titolo Grande */}
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
+            Visita la nostra sede
+          </h2>
 
-      {/* Descrizione */}
-      <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-        La nostra sede operativa si trova a Pontinia (LT), vero e proprio fulcro delle nostre attività. Ti invitiamo a scoprire il nostro impianto e i progetti concreti con cui trasformiamo ogni giorno gli scarti in nuove risorse
-      </p>
+          {/* Descrizione */}
+          <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+            La nostra sede operativa si trova a Pontinia (LT), vero e proprio fulcro delle nostre attività. Ti invitiamo a scoprire il nostro impianto e i progetti concreti con cui trasformiamo ogni giorno gli scarti in nuove risorse
+          </p>
 
-      {/* Info Cards */}
-      <div className="space-y-4 mb-8">
-        {locationInfo.slice(0, 2).map((info, index) => {
-          const IconComponent = info.icon;
-          return (
-            <div 
-              key={index}
-              className={`flex items-start gap-4 fade-in-up duration-1000 ${
-              index === 0 ? 'delay-300' :
-              'delay-400'
-              }`}
-            >
-            
-            {/* Icona */}
-            <div className="shrink-0">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100">
-                <IconComponent className="h-5 w-5 text-green-700" strokeWidth={2} />
-              </div>
-            </div>
-
-            {/* Testo */}
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-gray-500 uppercase">
-                {info.label}
-              </p>
-              {info.href ? (
-                <a 
-                  href={info.href}
-                  className="text-lg font-medium text-black hover:text-green-700 transition-colors"
+          {/* Info Cards con animazione sequenziale */}
+          <div className="space-y-4 mb-8">
+            {locationInfo.slice(0, 2).map((info, index) => {
+              const IconComponent = info.icon;
+              return (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: 0.3 + index * 0.15, 
+                    ease: "easeOut" 
+                  }}
+                  className="flex items-start gap-4"
                 >
-                  {info.value}
-                </a>
-              ) : (
-                <p className="text-lg font-medium text-black">
-                  {info.value}
-                </p>
-              )}
-            </div>
-          </div>
-        );
-      })}
+                  {/* Icona */}
+                  <div className="shrink-0">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100">
+                      <IconComponent className="h-5 w-5 text-green-700" strokeWidth={2} />
+                    </div>
+                  </div>
 
-    {/* Link per visualizzare tutti i contatti */}
-    <div className="pt-4">
-      <Link href="/contact">
-        <Button className="bg-black text-white font-xl rounded-full hover:bg-gray-900 transition-colors duration-200 group hover:cursor-pointer px-4 sm:px-5 py-2 sm:py-3 h-auto shadow-md ">
-          Visualizza tutti i contatti
-          <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
-        </Button>
-      </Link>
-      </div>
-      </div>
-    </div>
-  </div>
-</section>
+                  {/* Testo */}
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-gray-500 uppercase">
+                      {info.label}
+                    </p>
+                    {info.href ? (
+                      <a 
+                        href={info.href}
+                        className="text-lg font-medium text-black hover:text-green-700 transition-colors"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      <p className="text-lg font-medium text-black">
+                        {info.value}
+                      </p>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Link per visualizzare tutti i contatti */}
+          <div className="pt-4">
+            <Link href="/contact">
+              <Button className="bg-black text-white font-xl rounded-full hover:bg-gray-900 transition-colors duration-200 group hover:cursor-pointer px-4 sm:px-5 py-2 sm:py-3 h-auto shadow-md">
+                Visualizza tutti i contatti
+                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+          </div>
+
+        </div>
+      </motion.div>
+
+    </section>
   );
 }

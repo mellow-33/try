@@ -1,7 +1,8 @@
 "use client";
 
 import { Truck, Menu, Recycle, Package, Handshake, Building, Briefcase, Scale } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
+import { useScroll, useMotionValueEvent, motion } from "framer-motion";
 import { InstagramIcon } from "@/components/ui/instagram";
 import { PhoneCallIcon } from "@/components/ui/phone-call";
 import {
@@ -28,7 +29,8 @@ import {
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-// ─── Types ────────────────────────────────────────────────────────────────────
+
+// ─── Types ────────────────────────────────________________________________────
 
 interface MenuItem {
   title: string;
@@ -184,8 +186,35 @@ const Navbar1: React.FC<Navbar1Props> = ({
   menu = defaultMenu,
   className,
 }) => {
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    
+    // Se l'utente è in cima alla pagina (nei primi 100px), la navbar deve SEMPRE essere visibile
+    if (latest < 100) {
+      setHidden(false);
+      return;
+    }
+
+    // Se scorre verso il basso la nascondiamo, se scorre verso l'alto la mostriamo
+    if (latest > previous) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
+
   return (
-    <header className={cn("py-4 px-4 border-b bg-white sticky top-4 lg:top-4 z-50 rounded-3xl lg:rounded-3xl mx-4 lg:mx-6", className)}>
+    <motion.header
+      animate={{ y: hidden ? -100 : 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className={cn(
+        "py-4 px-4 border-b bg-white fixed top-4 left-0 right-0 z-50 rounded-3xl lg:rounded-3xl mx-4 lg:mx-6 shadow-sm",
+        className
+      )}
+    >
       <div className="container px-4 mx-auto">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
@@ -298,7 +327,7 @@ const Navbar1: React.FC<Navbar1Props> = ({
           </div>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 
