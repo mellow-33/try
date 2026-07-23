@@ -58,7 +58,7 @@ interface Navbar1Props {
 
 const defaultLogo: LogoProps = {
   url: "/",
-  src: "/logo.ico",
+  src: "/logo-Photoroom.png",
   alt: "logo",
   title: "Think Green",
 };
