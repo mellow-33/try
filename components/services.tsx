@@ -13,7 +13,7 @@ const features = [
   { id: 5, title: "Consulenze", subtitle: "Supporto professionale per la gestione sostenibile", image: "/consulenze.jpg"},    
   { id: 6, title: "Conferimenti", subtitle: "Raccolta e conferimento autorizzato di materiali", image: "/conferimento.jpg"},
   { id: 7, title: "Intermediazioni", subtitle: "Negoziazione e collegamento con operatori qualificati", image: "/intermediazioni.jpg"},    
-  ];
+];
 
 export default function ServicesShowcase() {
 
@@ -26,21 +26,28 @@ export default function ServicesShowcase() {
   const prevSlide = () => {
     setActiveIndex((prev) => (prev === 0 ? features.length - 1 : prev - 1));
   };
+
   return(
-    <section className="bg-[#fcfcfc] py-10 sm:py-14 md:py-16 overflow-hidden text-black">
+    <motion.section 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.9, ease: "easeOut" }}
+      className="bg-black pt-6 sm:pt-10 pb-10 sm:pb-14 md:pb-16 overflow-hidden text-white"
+    >
       
       {/* Intestazione animata allo scroll */}
       <motion.div 
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        className="max-w-350 mx-auto px-6 mb-12 text-center"
+        className="max-w-350 mx-auto px-6 mb-8 sm:mb-12 text-center"
       >
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
           Misurare, modellare e agire sulla sostenibilità
           <br />
-          <span className="font-semibold font-serif italic">tutto in un unico posto</span>
+          <span className="font-semibold font-serif italic text-emerald-400">tutto in un unico posto</span>
         </h2>
       </motion.div>
 
@@ -56,7 +63,7 @@ export default function ServicesShowcase() {
         {/* Freccia Sinistra */}
         <button 
           onClick={prevSlide}
-          className="absolute left-4 sm:left-4 md:left-8 z-30 w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/60 text-white rounded-full flex items-center justify-center hover:bg-black/90 backdrop-blur-sm transition-all shadow-lg"
+          className="absolute left-4 sm:left-4 md:left-8 z-30 w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/60 text-white rounded-full flex items-center justify-center hover:bg-black/90 backdrop-blur-sm transition-all shadow-lg border border-white/10"
           aria-label="Previous slide"
         >
           <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -80,7 +87,7 @@ export default function ServicesShowcase() {
                 }}
                 className={`
                   relative h-full overflow-hidden rounded-2xl sm:rounded-[2rem] cursor-pointer 
-                  transition-all duration-500 ease-out
+                  transition-all duration-500 ease-out border border-white/10
                   ${isActive 
                     ? 'block w-full sm:w-auto shadow-xl brightness-100' 
                     : 'hidden sm:block brightness-60 hover:brightness-90'}
@@ -109,7 +116,7 @@ export default function ServicesShowcase() {
                     <p className="text-sm sm:text-sm md:text-base mb-4 sm:mb-6 font-light opacity-90 line-clamp-2">
                       {item.subtitle}
                     </p>
-                    <button className="px-4 py-2 sm:px-5 sm:py-2 md:px-6 md:py-2.5 border border-white/80 rounded-full text-xs sm:text-sm font-medium backdrop-blur-sm hover:bg-white hover:text-black transition-colors duration-300">
+                    <button className="px-4 py-2 sm:px-5 sm:py-2 md:px-6 md:py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-full text-xs sm:text-sm transition-colors duration-300">
                       <Link href="/services">
                         Scopri di più
                       </Link>
@@ -131,7 +138,7 @@ export default function ServicesShowcase() {
         {/* Freccia Destra */}
         <button 
           onClick={nextSlide}
-          className="absolute right-4 sm:right-4 md:right-8 z-30 w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/60 text-white rounded-full flex items-center justify-center hover:bg-black/90 backdrop-blur-sm transition-all shadow-lg"
+          className="absolute right-4 sm:right-4 md:right-8 z-30 w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/60 text-white rounded-full flex items-center justify-center hover:bg-black/90 backdrop-blur-sm transition-all shadow-lg border border-white/10"
           aria-label="Next slide"
         >
           <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -147,11 +154,11 @@ export default function ServicesShowcase() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-        className="max-w-40 sm:max-w-62.5 md:max-w-md mx-auto mt-8 sm:mt-12 md:mt-16 relative px-4"
+        className="max-w-40 sm:max-w-62.5 md:max-w-md mx-auto mt-6 sm:mt-10 md:mt-14 relative px-4"
       >
-        <div className="w-full h-0.5 bg-gray-200 rounded-full"></div>
+        <div className="w-full h-0.5 bg-neutral-800 rounded-full"></div>
         <div 
-          className="absolute top-1/2 -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-gray-800 border-2 border-white rounded-full shadow-sm transition-all duration-500 ease-out"
+          className="absolute top-1/2 -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-emerald-400 border-2 border-black rounded-full shadow-sm transition-all duration-500 ease-out"
           style={{ 
             left: `${(activeIndex / (features.length - 1)) * 100}%`,
             transform: 'translate(-50%, -50%)'
@@ -159,6 +166,6 @@ export default function ServicesShowcase() {
         ></div>
       </motion.div>
 
-    </section>
+    </motion.section>
   );
 }

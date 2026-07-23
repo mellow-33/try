@@ -30,7 +30,7 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-// ─── Types ────────────────────────────────________________________________────
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 interface MenuItem {
   title: string;
@@ -115,14 +115,14 @@ const defaultMenu: MenuItem[] = [
 
 const SubMenuLink: React.FC<{ item: MenuItem }> = ({ item }) => (
   <a
-    className="flex min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
+    className="flex min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-white/10 hover:text-emerald-400 text-white"
     href={item.url}
   >
-    <div className="text-foreground">{item.icon}</div>
+    <div className="text-emerald-400">{item.icon}</div>
     <div>
-      <div className="font-semibold">{item.title}</div>
+      <div className="font-semibold text-white">{item.title}</div>
       {item.description && (
-        <p className="text-sm leading-snug text-muted-foreground">
+        <p className="text-sm leading-snug text-gray-400">
           {item.description}
         </p>
       )}
@@ -134,8 +134,10 @@ const renderMenuItem = (item: MenuItem): React.ReactElement => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title}>
-        <NavigationMenuTrigger className="font-extrabold">{item.title}</NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-popover text-popover-foreground rounded-full">
+        <NavigationMenuTrigger className="font-extrabold bg-transparent text-white hover:bg-white/10 hover:text-emerald-400 data-[state=open]:bg-white/10">
+          {item.title}
+        </NavigationMenuTrigger>
+        <NavigationMenuContent className="bg-black/90 backdrop-blur-xl border border-white/10 text-white rounded-2xl p-2 shadow-2xl">
           {item.items.map((subItem) => (
             <SubMenuLink key={subItem.title} item={subItem} />
           ))}
@@ -147,7 +149,7 @@ const renderMenuItem = (item: MenuItem): React.ReactElement => {
   return (
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink
-        className="group inline-flex h-10 w-max items-center justify-center bg-background px-4 py-2 transition-colors hover:bg-muted hover:text-accent-foreground font-extrabold"
+        className="group inline-flex h-10 w-max items-center justify-center bg-transparent px-4 py-2 transition-colors hover:bg-white/10 hover:text-emerald-400 font-extrabold text-white rounded-md"
         render={<a href={item.url} />}
       >
         {item.title}
@@ -160,10 +162,10 @@ const renderMobileMenuItem = (item: MenuItem): React.ReactElement => {
   if (item.items) {
     return (
       <AccordionItem key={item.title} value={item.title} className="border-b-0">
-        <AccordionTrigger className="text-md py-0 font-semibold hover:no-underline">
+        <AccordionTrigger className="text-md py-0 font-semibold text-white hover:no-underline hover:text-emerald-400">
           {item.title}
         </AccordionTrigger>
-        <AccordionContent className="mt-2">
+        <AccordionContent className="mt-2 pl-2">
           {item.items.map((subItem) => (
             <SubMenuLink key={subItem.title} item={subItem} />
           ))}
@@ -173,7 +175,7 @@ const renderMobileMenuItem = (item: MenuItem): React.ReactElement => {
   }
 
   return (
-    <a key={item.title} href={item.url} className="text-md font-semibold">
+    <a key={item.title} href={item.url} className="text-md font-semibold text-white hover:text-emerald-400 transition-colors">
       {item.title}
     </a>
   );
@@ -192,13 +194,11 @@ const Navbar1: React.FC<Navbar1Props> = ({
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
     
-    // Se l'utente è in cima alla pagina (nei primi 100px), la navbar deve SEMPRE essere visibile
     if (latest < 100) {
       setHidden(false);
       return;
     }
 
-    // Se scorre verso il basso la nascondiamo, se scorre verso l'alto la mostriamo
     if (latest > previous) {
       setHidden(true);
     } else {
@@ -211,7 +211,7 @@ const Navbar1: React.FC<Navbar1Props> = ({
       animate={{ y: hidden ? -100 : 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className={cn(
-        "py-4 px-4 border-b bg-white fixed top-4 left-0 right-0 z-50 rounded-3xl lg:rounded-3xl mx-4 lg:mx-6 shadow-sm",
+        "py-4 px-4 bg-black/40 backdrop-blur-md border border-white/10 text-white fixed top-4 left-0 right-0 z-50 rounded-3xl lg:rounded-3xl mx-4 lg:mx-6 shadow-2xl",
         className
       )}
     >
@@ -225,11 +225,11 @@ const Navbar1: React.FC<Navbar1Props> = ({
                 src={logo.src}
                 width={150}
                 height={150}
-                className={cn("max-h-8 bg-white", logo.className)}
+                className={cn("max-h-8 rounded p-0.5", logo.className)}
                 style={{ width: "auto" }}
                 alt={logo.alt}
               />
-              <span className="text-2xl font-semibold tracking-tighter text-foreground">
+              <span className="text-2xl font-semibold tracking-tighter text-white">
                 {logo.title}
               </span>
             </a>
@@ -245,10 +245,10 @@ const Navbar1: React.FC<Navbar1Props> = ({
           </div>
 
           {/* Contatti a destra */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <a 
               href="tel:07731361942" 
-              className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="p-2 text-white hover:text-emerald-400 transition-colors"
               title="Chiama"
             >
               <PhoneCallIcon className="size-5" />
@@ -257,7 +257,7 @@ const Navbar1: React.FC<Navbar1Props> = ({
               href="https://instagram.com/tuoprofilo" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="p-2 text-white hover:text-emerald-400 transition-colors"
               title="Seguici su Instagram"
             >
               <InstagramIcon className="size-5" />
@@ -272,29 +272,38 @@ const Navbar1: React.FC<Navbar1Props> = ({
             <a href={logo.url} className="flex items-center gap-2">
               <img
                 src={logo.src}
-                className={cn("max-h-8 dark:invert", logo.className)}
+                className={cn("max-h-8 rounded", logo.className)}
                 alt={logo.alt}
               />
-              <span className="text-lg font-semibold tracking-tighter">
+              <span className="text-lg font-semibold tracking-tighter text-white">
                 {logo.title}
               </span>
             </a>
 
             {/* Menu Hamburger */}
             <Sheet>
-              <SheetTrigger render={<button className={buttonVariants({ variant: "outline", size: "icon" })} />}>
+              <SheetTrigger 
+                render={
+                  <button 
+                    className={cn(
+                      buttonVariants({ variant: "outline", size: "icon" }),
+                      "bg-white/5 border-white/10 text-white hover:bg-white/10 hover:text-white"
+                    )} 
+                  />
+                }
+              >
                 <Menu className="size-4" />
               </SheetTrigger>
-              <SheetContent className="overflow-y-auto">
+              <SheetContent className="overflow-y-auto bg-black/90 backdrop-blur-xl border-l border-white/10 text-white">
                 <SheetHeader>
                   <SheetTitle>
                     <a href={logo.url} className="flex items-center gap-2">
                       <img
                         src={logo.src}
-                        className={cn("max-h-8 dark:invert", logo.className)}
+                        className={cn("max-h-8 rounded", logo.className)}
                         alt={logo.alt}
                       />
-                      <span className="text-lg font-semibold tracking-tighter">
+                      <span className="text-lg font-semibold tracking-tighter text-white">
                         {logo.title}
                       </span>
                     </a>
@@ -306,10 +315,10 @@ const Navbar1: React.FC<Navbar1Props> = ({
                   </Accordion>
                   
                   {/* Contatti nel menu mobile */}
-                  <div className="border-t pt-4 flex flex-row gap-3 justify-end">
+                  <div className="border-t border-white/10 pt-4 flex flex-row gap-3 justify-end">
                     <a 
                       href="tel:+393XXXXXXXXX" 
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+                      className="p-2 text-white hover:text-emerald-400 transition-colors"
                     >
                       <PhoneCallIcon className="size-5" />
                     </a>
@@ -317,7 +326,7 @@ const Navbar1: React.FC<Navbar1Props> = ({
                       href="https://instagram.com/tuoprofilo" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+                      className="p-2 text-white hover:text-emerald-400 transition-colors"
                     >
                       <InstagramIcon className="size-5" />
                     </a>

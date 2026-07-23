@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -52,9 +52,9 @@ export default function TextInfoSection() {
   };
 
   return (
-    <section className="w-full bg-white py-12 px-6 md:px-12 lg:py-32 flex justify-center">
+    <section className="w-full bg-black text-white py-12 px-6 md:px-12 lg:py-32 flex justify-center">
       {/* Contenitore principale con la linea grigia a sinistra */}
-      <div className="w-full max-w-7xl lg:border-l lg:border-gray-300 md:pl-12 lg:pl-20">
+      <div className="w-full max-w-7xl lg:border-l lg:border-neutral-800 md:pl-12 lg:pl-20">
         
         {/* Blocco di testo principale (Titolo grande) - Slide Up & Fade */}
         <motion.div 
@@ -64,7 +64,7 @@ export default function TextInfoSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-4xl mb-16 lg:mb-32"
         >
-          <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-semibold text-gray-900 leading-[1.15] tracking-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-semibold text-white leading-[1.15] tracking-tight">
             Siamo il partner strategico per la gestione, il trasporto e il recupero dei rifiuti speciali, guidando le imprese verso un'economia circolare
           </h2>
         </motion.div>
@@ -76,7 +76,7 @@ export default function TextInfoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-            className="max-w-2xl text-base md:text-lg text-gray-600 leading-relaxed space-y-4 font-normal"
+            className="max-w-2xl text-base md:text-lg text-gray-300 leading-relaxed space-y-4 font-normal"
           >
             <p>
               Il nostro impegno per la tutela dell'ambiente e la rigorosa conformità normativa è al centro di ogni nostra operazione. 
@@ -97,7 +97,7 @@ export default function TextInfoSection() {
           transition={{ duration: 0.9, ease: "easeOut" }}
           className="w-full mt-18 lg:mt-32"
         >
-          <div className="relative w-full aspect-video bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 group cursor-pointer hover:shadow-lg transition-shadow duration-300">
+          <div className="relative w-full aspect-video bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800 group cursor-pointer hover:shadow-lg transition-shadow duration-300">
             <video
               autoPlay
               loop
@@ -122,21 +122,21 @@ export default function TextInfoSection() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-xl"
           >
-            <h3 className="text-green-600 font-semibold text-xl md:text-2xl tracking-wide mb-6">
+            <h3 className="text-emerald-400 font-semibold text-xl md:text-2xl tracking-wide mb-6">
               La nostra visione
             </h3>
             
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-8">
               La nostra visione pone l'economia circolare al centro dei processi industriali. 
               Crediamo che una gestione trasparente, sicura ed efficiente dei rifiuti speciali sia un'opportunità concreta di valorizzazione per il tessuto aziendale. 
               Offriamo alle imprese soluzioni su misura per ottimizzare la gestione degli scarti e raggiungere i propri obiettivi di sostenibilità.
             </p>
 
-            <Button className="bg-black text-white font-lg rounded-full hover:bg-gray-900 transition-colors duration-200 group hover:cursor-pointer px-4 sm:px-5 py-2 sm:py-3 h-auto shadow-md font-medium">
+            <Button className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs font-mono uppercase tracking-wider rounded-xl transition-all duration-200 group hover:cursor-pointer px-6 py-4 h-auto shadow-md">
               <Link href="/services">
                 <span>Richiedi un preventivo</span>
               </Link>
-              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform ml-2" />
             </Button>
           </motion.div>
 
@@ -148,7 +148,7 @@ export default function TextInfoSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-green-600 font-semibold text-xl md:text-2xl tracking-wide"
+              className="text-emerald-400 font-semibold text-xl md:text-2xl tracking-wide"
             >
               Come lavoriamo
             </motion.h3>
@@ -169,7 +169,7 @@ export default function TextInfoSection() {
                 >
                   {/* Number Badge */}
                   <div className="shrink-0">
-                    <div className="h-px w-6 bg-gray-200 mb-2" />
+                    <div className="h-px w-6 bg-neutral-800 mb-2" />
                     <span className="text-xs font-bold text-gray-400 tracking-widest">
                       {feature.number}
                     </span>
@@ -177,12 +177,12 @@ export default function TextInfoSection() {
 
                   {/* Content */}
                   <div className="flex-1">
-                    <h3 className="text-base lg:text-xl font-bold mb-1">
-                      <span className="hover:text-green-600 transition-colors">
+                    <h3 className="text-base lg:text-xl font-bold mb-1 text-white">
+                      <span className="hover:text-emerald-400 transition-colors">
                         {feature.title}
                       </span>
                     </h3>
-                    <p className="text-gray-600 text-xs lg:text-lg leading-relaxed">
+                    <p className="text-gray-300 text-xs lg:text-lg leading-relaxed">
                       {feature.description}
                     </p>
                   </div>

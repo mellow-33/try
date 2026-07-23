@@ -1,5 +1,6 @@
 
 import { Navbar1 } from "@/components/navbar";
+import Footer from "@/components/footer";
 import HeroServices from "./hero";
 import CatalogoServizi from "./catalogue";
 
@@ -9,6 +10,7 @@ export default function Services(){
             <Navbar1 />
             <HeroServices />
             <CatalogoServizi />
+            <Footer />
         </>
     );
 }

@@ -24,7 +24,7 @@ export default function LocationSection() {
   ];
 
   return (
-    <section className="w-full min-h-125 lg:min-h-150 grid grid-cols-1 lg:grid-cols-2 overflow-hidden pt-24">
+    <section className="w-full min-h-125 lg:min-h-150 grid grid-cols-1 lg:grid-cols-2 overflow-hidden pt-24 bg-black text-white">
       
       {/* Colonna Sinistra - Mappa con animazione di entrata da sinistra */}
       <motion.div 
@@ -32,9 +32,9 @@ export default function LocationSection() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="bg-white flex items-center justify-center p-0 h-full min-h-150 sm:min-h-175 lg:min-h-auto"
+        className="bg-black flex items-center justify-center p-0 h-full min-h-150 sm:min-h-175 lg:min-h-auto"
       >
-        <div className="w-full h-full bg-linear-to-br from-gray-300 to-gray-200 flex items-center justify-center relative">
+        <div className="w-full h-full bg-neutral-900 flex items-center justify-center relative">
           {/* Iframe Mappa */}
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2991.989621034341!2d13.173047376565329!3d41.41774397129602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13253f0059fd79cd%3A0x15716f756ea67c84!2sTHINK%20GREEN%20S.R.L.!5e0!3m2!1sit!2sit!4v1784547109317!5m2!1sit!2sit"
@@ -54,20 +54,20 @@ export default function LocationSection() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        className="bg-white flex items-center justify-center p-8 lg:p-16 h-full pt-24 lg:pt-32"
+        className="bg-black flex items-center justify-center p-8 lg:p-16 h-full pt-24 lg:pt-32"
       >
         <div className="w-full max-w-xl pt-6">
           
           {/* Label */}
-          <p className="text-gray-500 text-sm font-medium mb-4">Dove trovarci</p>
+          <p className="text-emerald-400 text-xs font-mono uppercase tracking-widest mb-4">Dove trovarci</p>
 
           {/* Titolo Grande */}
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
             Visita la nostra sede
           </h2>
 
           {/* Descrizione */}
-          <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+          <p className="text-gray-300 text-lg mb-8 leading-relaxed font-light">
             La nostra sede operativa si trova a Pontinia (LT), vero e proprio fulcro delle nostre attività. Ti invitiamo a scoprire il nostro impianto e i progetti concreti con cui trasformiamo ogni giorno gli scarti in nuove risorse
           </p>
 
@@ -90,25 +90,25 @@ export default function LocationSection() {
                 >
                   {/* Icona */}
                   <div className="shrink-0">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100">
-                      <IconComponent className="h-5 w-5 text-green-700" strokeWidth={2} />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-900 border border-white/10">
+                      <IconComponent className="h-5 w-5 text-emerald-400" strokeWidth={2} />
                     </div>
                   </div>
 
                   {/* Testo */}
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-gray-500 uppercase">
+                    <p className="text-xs font-mono text-gray-400 uppercase">
                       {info.label}
                     </p>
                     {info.href ? (
                       <a 
                         href={info.href}
-                        className="text-lg font-medium text-black hover:text-green-700 transition-colors"
+                        className="text-lg font-medium text-white hover:text-emerald-400 transition-colors"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-lg font-medium text-black">
+                      <p className="text-lg font-medium text-white">
                         {info.value}
                       </p>
                     )}
@@ -121,9 +121,9 @@ export default function LocationSection() {
           {/* Link per visualizzare tutti i contatti */}
           <div className="pt-4">
             <Link href="/contact">
-              <Button className="bg-black text-white font-xl rounded-full hover:bg-gray-900 transition-colors duration-200 group hover:cursor-pointer px-4 sm:px-5 py-2 sm:py-3 h-auto shadow-md">
+              <Button className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs font-mono uppercase tracking-wider rounded-xl transition-all duration-200 group hover:cursor-pointer px-6 py-4 h-auto shadow-md">
                 Visualizza tutti i contatti
-                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform ml-2" />
               </Button>
             </Link>
           </div>

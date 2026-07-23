@@ -110,7 +110,7 @@ export default function AboutUsIntro(){
           <path
             className="wave-path"
             d="M0,80 Q360,40 720,80 T1440,80 L1440,120 L0,120 Z"
-            fill="white"
+            fill="black"
           />
         </svg>
       </motion.div>

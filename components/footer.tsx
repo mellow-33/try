@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 
 export default function Footer() {
   return (
-    <footer className="w-full py-12 md:pb-0 relative overflow-hidden bg-white">
+<footer className="w-full py-12 md:pb-0 relative overflow-hidden bg-black">
       <div className="container mx-auto px-4 flex flex-col items-center justify-center text-center">
         
         {/* Testo Gigante Sfumato con animazione */}
@@ -16,7 +16,7 @@ export default function Footer() {
           className="w-full mt-4 md:mt-32 flex justify-center select-none pointer-events-none"
         >
           <h1 
-            className="text-5xl sm:text-7xl md:text-[10vw] font-bold tracking-tighter leading-tight md:leading-[0.75] bg-clip-text text-transparent bg-gradient-to-b from-foreground via-foreground/80 to-transparent"
+            className="text-5xl sm:text-7xl md:text-[10vw] font-bold tracking-tighter leading-tight md:leading-[0.75] bg-clip-text text-transparent bg-gradient-to-b from-white via-white/80 to-transparent"
           >
             Think Green
           </h1>
