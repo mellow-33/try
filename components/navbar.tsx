@@ -223,9 +223,10 @@ const Navbar1: React.FC<Navbar1Props> = ({
             <a href={logo.url} className="flex items-center gap-2">
               <Image
                 src={logo.src}
-                width={30}
-                height={50}
+                width={150}
+                height={150}
                 className={cn("max-h-8 bg-white", logo.className)}
+                style={{ width: "auto" }}
                 alt={logo.alt}
               />
               <span className="text-2xl font-semibold tracking-tighter text-foreground">
