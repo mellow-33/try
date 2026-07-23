@@ -48,7 +48,7 @@ export default function Principles() {
       {/* Sfondo */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
-          src="/principle-bg.jpg"
+          src="/principi.jpg"
           alt="Sfondo principi aziendali"
           fill
           className="object-cover"
