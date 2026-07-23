@@ -43,9 +43,9 @@ export default function Principles() {
   ];
 
   return (
-    <section className="relative w-full py-12 md:py-24 overflow-hidden bg-gray-100">
+    <section className="relative w-full py-12 md:py-24 overflow-hidden bg-black">
       
-      {/* Sfondo */}
+      {/* Sfondo 
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
           src="/principi.jpg"
@@ -54,10 +54,10 @@ export default function Principles() {
           className="object-cover"
           priority
         />
-      </div>
+      </div>*/}
 
-      {/* Overlay sfumato */}
-      <div className="absolute inset-0 bg-linear-to-b from-white/10 via-white/5 to-white/10 z-1" />
+      {/* Overlay sfumato 
+      <div className="absolute inset-0 bg-linear-to-b from-white/10 via-white/5 to-white/10 z-1" />*/}
 
       {/* Contenuto */}
       <div className="relative z-10">

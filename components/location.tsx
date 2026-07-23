@@ -32,9 +32,9 @@ export default function LocationSection() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="bg-black flex items-center justify-center p-0 h-full min-h-150 sm:min-h-175 lg:min-h-auto"
+        className="bg-black flex items-center justify-center p-4 sm:p-6 lg:p-8 h-full min-h-150 sm:min-h-175 lg:min-h-auto"
       >
-        <div className="w-full h-full bg-neutral-900 flex items-center justify-center relative">
+        <div className="w-full h-full bg-neutral-900 flex items-center justify-center relative rounded-3xl overflow-hidden border border-white/10 shadow-lg">
           {/* Iframe Mappa */}
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2991.989621034341!2d13.173047376565329!3d41.41774397129602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13253f0059fd79cd%3A0x15716f756ea67c84!2sTHINK%20GREEN%20S.R.L.!5e0!3m2!1sit!2sit!4v1784547109317!5m2!1sit!2sit"
