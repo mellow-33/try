@@ -28,13 +28,7 @@ export default function ServicesShowcase() {
   };
 
   return(
-    <motion.section 
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.9, ease: "easeOut" }}
-      className="bg-black pt-6 sm:pt-10 pb-10 sm:pb-14 md:pb-16 overflow-hidden text-white"
-    >
+    <section className="bg-black pt-6 sm:pt-10 pb-10 sm:pb-14 md:pb-16 overflow-hidden text-white">
       
       {/* Intestazione animata allo scroll */}
       <motion.div 
@@ -166,6 +160,6 @@ export default function ServicesShowcase() {
         ></div>
       </motion.div>
 
-    </motion.section>
+    </section>
   );
 }
