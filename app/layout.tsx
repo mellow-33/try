@@ -3,6 +3,11 @@ import { Geist, Geist_Mono, Lato } from "next/font/google";
 import "./style/globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+
+
 const fontLato = Lato({
   weight: ['400'],
   style: ['normal'],

@@ -1,10 +1,49 @@
 "use client"
 
+import { motion } from "motion/react";
+
 export default function HeroSection() {
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.25, // Spaziatura temporale tra la comparsa del titolo e del sottotitolo
+        delayChildren: 0.2,    // Breve attesa iniziale per permettere al video di caricarsi
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40, 
+      filter: "blur(12px)", 
+      scale: 0.95 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      scale: 1,
+      transition: {
+        duration: 1,
+        ease: [0.16, 1, 0.3, 1] as const, // Curva cubic-bezier morbida e di impatto "editorial"
+      },
+    },
+  };
+
   return (
-<section className="relative w-full min-h-[85vh] sm:min-h-screen overflow-hidden bg-[#050914] -mt-24 lg:-mt-24">
-  {/* Video di sfondo con effetto sfumato */}
-  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<section className="relative w-full h-dvh overflow-hidden bg-[#050914]">
+  
+  {/* Video di sfondo: Effetto Slow-Zoom / Camera Reveal */}
+  <motion.div 
+    initial={{ opacity: 0, scale: 1.12 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 2, ease: "easeOut" }}
+    className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
+  >
     <video
       autoPlay
       loop
@@ -19,27 +58,35 @@ export default function HeroSection() {
       <source src="/video1.mp4" type="video/mp4" />
       Il tuo browser non supporta il tag video.
     </video>
-  </div>
+  </motion.div>
 
   {/* Overlay sfumato */}
   <div className="absolute inset-0 bg-linear-to-b from-blue-50/40 via-transparent to-white/30 z-1" />
 
-  {/* Contenuto in primo piano - AGGIUNTO pt-24 */}
-  <div className="relative z-10 flex flex-col items-center justify-center min-h-[85vh] sm:min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 pt-24">
-    {/* Titolo Principale - Serif Bold */}
-    <div className="max-w-4xl text-center mb-4 lg:mb-10">
-      <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight">
+  {/* Contenuto in primo piano - Perfettamente Centrato */}
+  <motion.div 
+    variants={containerVariants}
+    initial="hidden"
+    animate="visible"
+    className="relative z-10 w-full h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8"
+  >
+    {/* Titolo Principale - Fade in con Blur + ScaleUp */}
+    <motion.div variants={itemVariants} className="max-w-4xl text-center mb-6 lg:mb-8">
+      <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight">
         Think Green dove i <span className="font-serif italic font-normal">rifiuti</span>
         <br />
         diventano <span className="font-serif italic font-normal">risorse</span>
       </h1>
-    </div>
+    </motion.div>
 
-    {/* Sottotitolo */}
-    <p className="max-w-2xl text-lg sm:text-lg md:text-xl text-white text-center mb-8 sm:mb-10 lg:mb-12 leading-relaxed">
+    {/* Sottotitolo - Compare subito dopo il titolo */}
+    <motion.p 
+      variants={itemVariants}
+      className="max-w-2xl text-lg sm:text-xl md:text-2xl text-white text-center leading-relaxed"
+    >
       Riduci, Riusa, Rigenera. Il futuro è circolare
-    </p>
-  </div>
+    </motion.p>
+  </motion.div>
 </section>
   );
 }

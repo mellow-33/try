@@ -1,19 +1,24 @@
 "use client"
 
 import Image from "next/image";
-import { TelescopeIcon } from "@/components/ui/telescope";
-import { EarthIcon } from "@/components/ui/earth";
-import { ArrowUpRightIcon } from "@/components/ui/arrow-up-right";
-import { ComponentType } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
+import type { ComponentType } from "react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faBinoculars,              
+  faEarthAmericas,                   
+  faArrowUpRightFromSquare,  
+  type IconDefinition 
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Principles() {
   
-  const iconMap: Record<string, ComponentType<any>> = {
-    TelescopeIcon: TelescopeIcon,
-    EarthIcon: EarthIcon,
-    ArrowUpRightIcon: ArrowUpRightIcon,
+  const iconMap: Record<string, IconDefinition> = {
+    TelescopeIcon: faBinoculars,
+    EarthIcon: faEarthAmericas,
+    ArrowUpRightIcon: faArrowUpRightFromSquare,
   };
 
   const principles = [
@@ -43,8 +48,8 @@ export default function Principles() {
       {/* Sfondo */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
-          src="/principle.jpg"
-          alt="Principles background"
+          src="/principle-bg.jpg"
+          alt="Sfondo principi aziendali"
           fill
           className="object-cover"
           priority
@@ -64,39 +69,41 @@ export default function Principles() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-center mb-8 lg:mb-16 flex flex-col items-center"
+            className="text-center mb-12 lg:mb-20 flex flex-col items-center"
           >
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl text-white mb-4">
+            <h2 className="text-5xl sm:text-6xl lg:text-7xl text-white mb-4 leading-tight">
               Pensato per l'ambiente
               <br />
               <span className="font-serif font-black">Progettato per la tua azienda</span>
             </h2>
           </motion.div>
 
-          <Link href="/about">
-            {/* Grid delle Card */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {principles.map((item, index) => {
-                const IconComponent = iconMap[item.icon];
-                
-                return (
+          {/* Grid delle Card */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {principles.map((item, index) => {
+              const IconComponent = iconMap[item.icon];
+              
+              return (
+                // Spostato il Link QUI per avvolgere la singola card
+                <Link href="/about" key={index} className="block outline-none h-full">
                   <motion.div 
-                    key={index}
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
+                    // Animazione al passaggio del mouse: la card sale di 8px
+                    whileHover={{ y: -8 }}
                     transition={{ 
                       duration: 0.6, 
-                      delay: index * 0.15, // Ritardo incrementale per ogni card (0s, 0.15s, 0.3s)
+                      delay: index * 0.15, // Effetto a cascata in ingresso
                       ease: "easeOut" 
                     }}
-                    className="flex flex-col bg-[#FDFBF7] rounded-2xl p-8 border border-[#C2D6B3] shadow-sm"
+                    className="flex flex-col h-full bg-[#FDFBF7] rounded-2xl p-8 border border-[#C2D6B3] shadow-sm hover:shadow-lg transition-shadow duration-300"
                   >
                     {/* Icona custom */}
                     <div className="mb-6 flex">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#009D12]">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#009D12] shadow-inner">
                         {IconComponent && (
-                          <IconComponent className="h-6 w-6 text-[#EBF5E6] flex items-center justify-center" />
+                          <FontAwesomeIcon icon={IconComponent} className="h-6 w-6 text-[#EBF5E6]" />
                         )}
                       </div>
                     </div>
@@ -105,14 +112,14 @@ export default function Principles() {
                     <h3 className="mb-3 text-xl font-semibold text-black">
                       {item.title}
                     </h3>
-                    <p className="text-black leading-relaxed">
+                    <p className="text-gray-700 leading-relaxed text-sm md:text-base">
                       {item.description}
                     </p>
                   </motion.div>
-                );
-              })}
-            </div>
-          </Link>
+                </Link>
+              );
+            })}
+          </div>
 
         </div>
       </div>
