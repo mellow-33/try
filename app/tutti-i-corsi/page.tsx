@@ -1,29 +1,21 @@
-"use client";
+'use client';
 
 import { useState } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import { mockData, CodiceRifiuto } from "./codiciRfiutiData";
-import Link from "next/link";
+import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { mockData, CodiceCorso } from "../services/codiciCorsi"; 
 
-export default function ListaCodiciRifiuti() {
-  const [selectedCode, setSelectedCode] = useState<CodiceRifiuto | null>(null);
-  const [mostraTutti, setMostraTutti] = useState<boolean>(false);
+export default function TuttiICodiciCorsi() {
+  const [selectedCode, setSelectedCode] = useState<CodiceCorso | null>(null);
 
   const closePopup = () => {
     setSelectedCode(null);
   };
 
-  // Mostra solo i primi elementi se mostraTutti è false, altrimenti mostra l'intera lista
-  const limit = 4;
-  const datiVisualizzati = mostraTutti ? mockData : mockData.slice(0, limit);
-
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.05 },
     },
   };
 
@@ -37,32 +29,41 @@ export default function ListaCodiciRifiuti() {
   };
 
   return (
-    <section className="bg-black py-8 px-6 md:px-12 font-sans text-white overflow-hidden lg:pt-24">
+    <main className="min-h-screen bg-black p-6 md:p-12 font-sans text-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        
-        {/* Intestazione animata */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" as const }}
+          className="mb-8"
         >
+          <div className="flex items-center justify-between mb-4">
+            <a
+              href="/"
+              className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+            >
+              &larr; Torna alla home
+            </a>
+            <span className="text-xs font-mono bg-green-400/10 text-green-400 border border-green-400/20 px-3 py-1 rounded-full">
+              Totale: {mockData.length} corsi
+            </span>
+          </div>
+
           <h1 className="text-3xl font-bold text-white mb-2">
-            Catalogo Codici Rifiuto (CER / EER)
+            Catalogo Completo Corsi di Formazione
           </h1>
-          <p className="text-sm text-gray-400 mb-8">
-            Seleziona un codice dalla lista per visualizzarne la definizione chiara e dettagliata.
+          <p className="text-sm text-gray-400">
+            Elenco completo di tutti i corsi disponibili. Seleziona un elemento per visualizzarne i dettagli.
           </p>
         </motion.div>
 
-        {/* Griglia dei Codici animata allo scroll */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          animate="visible"
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
         >
-          {datiVisualizzati.map((elemento) => (
+          {mockData.map((elemento) => (
             <motion.button
               variants={cardVariants}
               key={elemento.id}
@@ -71,36 +72,22 @@ export default function ListaCodiciRifiuti() {
             >
               <div>
                 <span className="text-green-400 font-mono font-bold text-xl group-hover:text-green-300 transition-colors">
-                  {elemento.codice}
+                  {elemento.nome}
                 </span>
                 <p className="text-white text-sm font-medium mt-2 line-clamp-2 leading-relaxed">
-                  {elemento.nomeRifiuto}
+                  {elemento.descrizione}
                 </p>
               </div>
               <div className="mt-4 flex items-center justify-between pt-2 border-t border-white/5">
                 <span className="text-xs text-gray-500 uppercase tracking-wider group-hover:text-gray-300 transition-colors">
                   Dettagli &rarr;
                 </span>
-                <div className={`w-2 h-2 rounded-full ${elemento.codice.includes('*') ? 'bg-red-500' : 'bg-green-500'}`} />
               </div>
             </motion.button>
           ))}
         </motion.div>
-
-        {/* Pulsante per reindirizzare alla pagina completa */}
-        {mockData.length > limit && (
-          <div className="mt-8 flex justify-center">
-            <Link
-              href="/tutti-i-codici"
-              className="bg-green-500 hover:bg-green-400 text-black font-bold px-8 py-3 rounded-xl transition-colors cursor-pointer text-sm shadow-md inline-block"
-            >
-              Visualizza tutti ({mockData.length}) codici &rarr;
-            </Link>
-          </div>
-        )}
       </div>
 
-      {/* Popup Card (Modale) gestita con AnimatePresence */}
       <AnimatePresence>
         {selectedCode && (
           <motion.div
@@ -119,12 +106,11 @@ export default function ListaCodiciRifiuti() {
               className="bg-neutral-900 border border-white/10 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden cursor-default max-h-[90vh] flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header Popup */}
               <div className="bg-neutral-800/50 px-6 py-4 border-b border-white/10 flex justify-between items-center shrink-0">
                 <h2 className="text-xl font-bold text-white flex items-center">
-                  Codice CER: 
+                  Nome 
                   <span className="font-mono text-green-400 bg-green-400/10 border border-green-400/20 px-2.5 py-0.5 rounded ml-3">
-                    {selectedCode.codice}
+                    {selectedCode.nome}
                   </span>
                 </h2>
                 <button
@@ -135,26 +121,18 @@ export default function ListaCodiciRifiuti() {
                 </button>
               </div>
 
-              {/* Corpo Popup (Scrollabile) */}
               <div className="p-6 space-y-6 overflow-y-auto">
                 <div className="bg-neutral-800/30 p-5 rounded-xl border border-white/5 space-y-2">
                   <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider block">
                     Definizione Dettagliata
                   </label>
                   <p className="text-base text-gray-200 leading-relaxed font-medium">
-                    {selectedCode.nomeRifiuto}
+                    {selectedCode.descrizione}
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between text-xs text-gray-500 px-1">
-                  <span>ID Registro: #{selectedCode.id}</span>
-                  <span className={selectedCode.codice.includes('*') ? 'text-red-400 font-semibold' : 'text-green-400 font-semibold'}>
-                    {selectedCode.codice.includes('*') ? 'Rifiuto Pericoloso' : 'Rifiuto Non Pericoloso'}
-                  </span>
-                </div>
               </div>
 
-              {/* Footer Popup */}
               <div className="bg-neutral-800/50 px-6 py-4 border-t border-white/10 flex justify-end shrink-0">
                 <button
                   onClick={closePopup}
@@ -167,6 +145,6 @@ export default function ListaCodiciRifiuti() {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </main>
   );
 }

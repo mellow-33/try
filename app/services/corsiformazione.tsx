@@ -2,18 +2,17 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { mockData, CodiceRifiuto } from "./codiciRfiutiData";
+import { mockData, CodiceCorso} from "./codiciCorsi";
 import Link from "next/link";
 
-export default function ListaCodiciRifiuti() {
-  const [selectedCode, setSelectedCode] = useState<CodiceRifiuto | null>(null);
+export default function ListaCorsiFormazione() {
+  const [selectedCode, setSelectedCode] = useState<CodiceCorso | null>(null);
   const [mostraTutti, setMostraTutti] = useState<boolean>(false);
 
   const closePopup = () => {
     setSelectedCode(null);
   };
 
-  // Mostra solo i primi elementi se mostraTutti è false, altrimenti mostra l'intera lista
   const limit = 4;
   const datiVisualizzati = mostraTutti ? mockData : mockData.slice(0, limit);
 
@@ -47,10 +46,10 @@ export default function ListaCodiciRifiuti() {
           transition={{ duration: 0.6, ease: "easeOut" as const }}
         >
           <h1 className="text-3xl font-bold text-white mb-2">
-            Catalogo Codici Rifiuto (CER / EER)
+            Catalogo Corsi di Formazione
           </h1>
           <p className="text-sm text-gray-400 mb-8">
-            Seleziona un codice dalla lista per visualizzarne la definizione chiara e dettagliata.
+            Seleziona un corso dalla lista per visualizzarne la definizione chiara e dettagliata.
           </p>
         </motion.div>
 
@@ -71,17 +70,11 @@ export default function ListaCodiciRifiuti() {
             >
               <div>
                 <span className="text-green-400 font-mono font-bold text-xl group-hover:text-green-300 transition-colors">
-                  {elemento.codice}
+                  {elemento.nome}
                 </span>
                 <p className="text-white text-sm font-medium mt-2 line-clamp-2 leading-relaxed">
-                  {elemento.nomeRifiuto}
+                  {elemento.descrizione}
                 </p>
-              </div>
-              <div className="mt-4 flex items-center justify-between pt-2 border-t border-white/5">
-                <span className="text-xs text-gray-500 uppercase tracking-wider group-hover:text-gray-300 transition-colors">
-                  Dettagli &rarr;
-                </span>
-                <div className={`w-2 h-2 rounded-full ${elemento.codice.includes('*') ? 'bg-red-500' : 'bg-green-500'}`} />
               </div>
             </motion.button>
           ))}
@@ -91,10 +84,10 @@ export default function ListaCodiciRifiuti() {
         {mockData.length > limit && (
           <div className="mt-8 flex justify-center">
             <Link
-              href="/tutti-i-codici"
+              href="/tutti-i-corsi"
               className="bg-green-500 hover:bg-green-400 text-black font-bold px-8 py-3 rounded-xl transition-colors cursor-pointer text-sm shadow-md inline-block"
             >
-              Visualizza tutti ({mockData.length}) codici &rarr;
+              Visualizza tutti ({mockData.length}) i corsi &rarr;
             </Link>
           </div>
         )}
@@ -122,9 +115,9 @@ export default function ListaCodiciRifiuti() {
               {/* Header Popup */}
               <div className="bg-neutral-800/50 px-6 py-4 border-b border-white/10 flex justify-between items-center shrink-0">
                 <h2 className="text-xl font-bold text-white flex items-center">
-                  Codice CER: 
+                  Nome 
                   <span className="font-mono text-green-400 bg-green-400/10 border border-green-400/20 px-2.5 py-0.5 rounded ml-3">
-                    {selectedCode.codice}
+                    {selectedCode.nome}
                   </span>
                 </h2>
                 <button
@@ -142,15 +135,8 @@ export default function ListaCodiciRifiuti() {
                     Definizione Dettagliata
                   </label>
                   <p className="text-base text-gray-200 leading-relaxed font-medium">
-                    {selectedCode.nomeRifiuto}
+                    {selectedCode.descrizione}
                   </p>
-                </div>
-
-                <div className="flex items-center justify-between text-xs text-gray-500 px-1">
-                  <span>ID Registro: #{selectedCode.id}</span>
-                  <span className={selectedCode.codice.includes('*') ? 'text-red-400 font-semibold' : 'text-green-400 font-semibold'}>
-                    {selectedCode.codice.includes('*') ? 'Rifiuto Pericoloso' : 'Rifiuto Non Pericoloso'}
-                  </span>
                 </div>
               </div>
 

@@ -4,6 +4,7 @@ import Footer from "@/components/footer";
 import HeroServices from "./hero";
 import CatalogoServizi from "./catalogue";
 import TabellaCodiciPage from "./eercode";
+import ListaCorsiFormazione from "./corsiformazione";
 
 export default function Services(){
     return(
@@ -12,6 +13,7 @@ export default function Services(){
             <HeroServices />
             <CatalogoServizi />
             <TabellaCodiciPage />
+            <ListaCorsiFormazione />
             <Footer />
         </>
     );
