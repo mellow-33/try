@@ -1,10 +1,7 @@
 "use client"
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
-import type { ComponentType } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faBinoculars,              
@@ -97,22 +94,22 @@ export default function Principles() {
                       delay: index * 0.15, // Effetto a cascata in ingresso
                       ease: "easeOut" 
                     }}
-                    className="flex flex-col h-full bg-[#FDFBF7] rounded-2xl p-8 border border-[#C2D6B3] shadow-sm hover:shadow-lg transition-shadow duration-300"
+                    className="flex flex-col h-full bg-neutral-900 rounded-2xl p-8 border border-white/10 shadow-sm hover:shadow-lg hover:border-white/20 transition-all duration-300"
                   >
                     {/* Icona custom */}
                     <div className="mb-6 flex">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#009D12] shadow-inner">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-black border border-white/10 shadow-inner">
                         {IconComponent && (
-                          <FontAwesomeIcon icon={IconComponent} className="h-6 w-6 text-[#EBF5E6]" />
+                          <FontAwesomeIcon icon={IconComponent} className="h-6 w-6 text-emerald-400" />
                         )}
                       </div>
                     </div>
 
                     {/* Contenuto Testuale */}
-                    <h3 className="mb-3 text-xl font-semibold text-black">
+                    <h3 className="mb-3 text-xl font-semibold text-white">
                       {item.title}
                     </h3>
-                    <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+                    <p className="text-gray-400 leading-relaxed text-sm md:text-base">
                       {item.description}
                     </p>
                   </motion.div>
